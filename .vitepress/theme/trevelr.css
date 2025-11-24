@@ -1,0 +1,760 @@
+/* ==================================================
+   VARIABLES
+================================================== */
+:root {
+  --color-primary:       #E95A22;
+  --color-accent:        #FEE3B5;
+  --color-bg:            #447665;
+  --color-dark:          #3F5448;
+  --color-white:         #FFFFFF;
+  --color-muted:         #A0AEC0;
+
+  /* Typography */
+  --font-heading:     'Rubik', sans-serif;
+  --font-body:        'Open Sans', sans-serif;
+  --font-handwriting: 'Permanent Marker', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+
+  /* Layout */
+  /* --container-width: 800px; */
+}
+
+/* ==================================================
+   RESET & BASE
+================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 1) Ensure the page fills the viewport */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* 2) Turn body into a column flex container */
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-white);
+}
+
+h1, h2, h3 {
+  margin: 1.5rem 0 1rem;
+  font-family: var(--font-heading);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-accent);
+}
+
+/* ==================================================
+   GENERAL BTN
+================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--color-accent);
+  color: var(--color-dark);
+  border: 2px solid var(--color-primary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+/* ==================================================
+   GENERAL CARD
+================================================== */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  gap: 1rem;
+  background: var(--color-white);
+  color: var(--color-dark);
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ==================================================
+   SITE HEADER
+================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background: var(--color-primary);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-socials a {
+  color: var(--color-accent);
+  margin-left: 1rem;
+}
+
+.site-socials a:hover {
+  color: var(--color-dark);
+}
+
+.site-socials .social-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.site-header nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-header nav a {
+  color: var(--color-accent);
+}
+
+.site-header nav a {
+  margin-right: 2rem;
+}
+
+.site-header nav a:last-child {
+  margin-right: 0;
+}
+
+.site-header nav a:hover {
+  color: var(--color-dark);
+}
+
+/* ==================================================
+   MAIN LAYOUT
+   .page wraps .page-main wraps .page-content + .page-sidebar
+================================================== */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+  flex: 1 0 auto;
+}
+
+.page-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--color-accent);
+  max-width: 48rem;
+  margin: 0;
+  line-height: 1.1;
+  z-index: 1;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-sidebar {
+  /* */
+}
+
+/* ==================================================
+   SIDEBAR
+================================================== */
+.sidebar {
+  /* on mobile it's full width; at tablet+ it's fixed via .page */
+}
+.sidebar-card {
+  background: var(--color-white);
+  color: var(--color-dark);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.sidebar-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-dark);
+}
+.sidebar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sidebar-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-family: var(--font-body);
+}
+.sidebar-button {
+  padding: 0.5rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.sidebar-button:hover {
+  background: var(--color-accent);
+  color: var(--color-dark);
+}
+.sidebar-ad-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+/* ──────────────────────────────────────────────────
+   Related-Posts Sidebar Card
+─────────────────────────────────────────────────── */
+.sidebar-related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-related-item {
+  margin-bottom: 0.75rem;
+}
+.sidebar-related-item:last-child {
+  margin-bottom: 0;
+}
+.sidebar-related-link {
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.sidebar-related-link:hover {
+  color: var(--color-dark);
+}
+
+/* Categories list card */
+.post-list {
+  background: var(--color-white);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.post-list-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-dark);
+}
+.post-list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-list-item {
+  margin-bottom: 0.5rem;
+}
+.post-list-item:last-child {
+  margin-bottom: 0;
+}
+.post-list-item a {
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.post-list-item a:hover {
+  color: var(--color-dark);
+}
+
+/* ==================================================
+   FOOTER
+================================================== */
+.site-footer {
+  background: var(--color-dark);
+  bottom: 0;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+}
+
+.post-content {
+  color: var(--color-white);
+}
+
+/* Ensure new paragraphs align to the ruled lines */
+.post-content p {
+  /* */
+}
+
+/* ==================================================
+   POSTS GRID
+================================================== */
+.post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+/* ==================================================
+   HERO
+================================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  background: var(--color-primary);
+  padding: 0 1rem;
+}
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--color-accent);
+  margin: 0;
+  line-height: 1.1;
+}
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--color-dark);
+  margin-top: 0.5rem;
+}
+.hero .btn {
+  margin-top: 2rem;
+}
+
+/* ==================================================
+   DECORATIVE IMAGES (absolute layout)
+================================================== */
+.home-images {
+  display: none; /* show via media query */
+}
+
+.home-images img {
+  position: absolute;
+  z-index: 0;
+}
+
+/* ==================================================
+   FEATURED SECTION WRAPPER
+================================================== */
+.featured {
+  padding-top: 10rem;
+}
+
+/* ==================================================
+   POLAROID CARD
+================================================== */
+.post-grid-item {
+  --rotate-angle: 0deg;
+
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 1rem 1rem 2rem;
+  transform: rotate(var(--rotate-angle));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-body);
+  width: 100%;
+}
+.post-grid-item::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.2);
+  z-index: 2;
+}
+.post-grid-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 12px;
+  background: var(--color-dark);
+  z-index: 1;
+}
+.post-grid-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.post-grid-item-caption {
+  text-align: center;
+  font-size: 1.36rem;
+  color: var(--color-dark);
+  font-family: var(--font-handwriting);
+}
+.post-grid-item p {
+  color: var(--color-dark);
+}
+.post-grid-item:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+/* ==================================================
+   AUTHOR INFO
+================================================== */
+.author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+
+.author-avatar-small {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+
+.author-avatar-tiny {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+
+.author-name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  margin: 0 0 var(--space-xs) 0;
+  color: var(--color-primary);
+}
+
+.author-bio {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  margin: 0;
+  color: var(--color-dark);
+}
+
+.author-socials a:hover {
+  color: var(--color-dark)
+}
+
+.post-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-navigation a:hover {
+  color: var(--color-dark);
+}
+
+/* ==================================================
+   CONTACT FORM
+================================================== */
+.contact-form {
+  width: 100%;
+  color: var(--color-dark);
+  margin: var(--space-lg) auto;
+  display: grid;
+  grid-gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-white);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-dark);
+}
+
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: var(--space-sm);
+}
+
+.contact-form textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  align-self: start;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+
+.contact-form button:hover {
+  background: var(--color-dark);
+  transform: translateY(-1px);
+}
+
+
+/* ==================================================
+   LAYOUT TWEAKS AT TABLET+
+================================================== */
+@media (min-width: 768px) {
+  /* Hero shrinks */
+  .hero {
+    height: 50vh;
+  }
+  /* Show decorative images */
+  .home-images {
+    display: block;
+    position: relative;
+    height: 50vh;
+    background: var(--color-primary);
+  }
+
+  /* Two-column main layout */
+  .page-main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .page-content {
+    flex: 1;
+  }
+
+.page-sidebar {
+  width: 18rem;
+}
+
+  .author-avatar {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .author-info {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .author-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ==================================================
+   POSTS GRID
+================================================== */
+  .post-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==================================================
+   LAYOUT TWEAKS AT DESKTOP+
+================================================== */
+@media (min-width: 1024px) {
+  /* ==================================================
+     POSTS GRID
+  ================================================== */
+  .post-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.post-grid-item a:hover {
+  color: var(--color-dark);
+}
+
+/* Single post layout */
+.post-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post-hero img {
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.post-meta {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.post-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.post-pagination .btn {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.post-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid transparent;
+}
+
+.badge-category {
+  background: rgba(0,0,0,0.04);
+  color: var(--color-dark);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.badge-tag {
+  background: rgba(233, 90, 34, 0.08);
+  color: var(--color-primary);
+  border-color: rgba(233, 90, 34, 0.2);
+}
+
+.post-meta-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.author-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-chip-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  color: var(--color-dark);
+  font-size: 0.95rem;
+}
+
+.post-meta-author {
+  font-weight: 600;
+}
+
+.post-meta-separator {
+  opacity: 0.6;
+}
+
+.post-meta-date {
+  color: var(--color-dark);
+  font-size: 0.95rem;
+}

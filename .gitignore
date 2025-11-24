@@ -20,7 +20,8 @@ node_modules/
 .env.local
 
 # vuepress build output
-.vitepress/
+.vitepress/dist/
+.vitepress/cache/
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
