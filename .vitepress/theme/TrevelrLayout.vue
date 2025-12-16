@@ -1,18 +1,26 @@
 <script setup>
 import { computed } from 'vue'
-import { useData, useRoute } from 'vitepress'
+import { Content, useData, useRoute } from 'vitepress'
 
 const { theme } = useData()
 const route = useRoute()
 
 const modules = import.meta.glob('/blog/*.md', { eager: true })
 
+const authors = {
+  trevelr: {
+    name: 'The Trevelr',
+    avatar: '/assets/img/trevelr-avatar.png',
+    bio: 'Explorer, adventurer, and seeker of rare finds and extraordinary experiences.'
+  }
+}
+
 const posts = computed(() =>
   Object.entries(modules)
     .map(([path, mod]) => {
       const pageData = mod.__pageData || {}
       const fm = pageData.frontmatter || {}
-      const authorKey = (fm.author || 'jon').toLowerCase()
+      const authorKey = (fm.author || '').toLowerCase()
       const slug = pageData.relativePath
         ? pageData.relativePath.replace(/^blog\//, '').replace(/\.md$/, '')
         : path.replace('/blog/', '').replace(/\.md$/, '')
@@ -58,12 +66,6 @@ const prevNext = computed(() => {
     next: idx < posts.value.length - 1 ? posts.value[idx + 1] : null
   }
 })
-
-const currentAuthor = computed(() => {
-  const authors = theme.value?.authors || {}
-  const key = currentPost.value?.authorKey || 'jon'
-  return authors[key] || authors['jon'] || null
-})
 </script>
 
 <template>
@@ -106,21 +108,27 @@ const currentAuthor = computed(() => {
               <h1 class="page-title">{{ currentPost?.title }}</h1>
               <div
                 class="post-meta-card"
-                v-if="currentPost?.date || currentPost?.categories?.length || currentPost?.tags?.length || currentAuthor"
+                v-if="currentPost?.date || currentPost?.categories?.length || currentPost?.tags?.length"
               >
-                <div class="author-chip" v-if="currentAuthor">
+                <div
+                  class="author-info"
+                  v-if="authors[currentPost?.authorKey || 'trevelr']"
+                >
                   <img
-                    class="author-avatar-small"
-                    :src="currentAuthor.avatar"
-                    :alt="currentAuthor.name"
+                    class="author-avatar"
+                    :src="authors[currentPost?.authorKey || 'trevelr'].avatar"
+                    :alt="authors[currentPost?.authorKey || 'trevelr'].name"
                   />
-                  <div class="author-chip-text">
-                    <div class="author-name">{{ currentAuthor.name }}</div>
-                    <p class="author-bio" v-if="currentAuthor.bio">{{ currentAuthor.bio }}</p>
+                  <div class="author-details">
+                    <div class="author-name">
+                      {{ authors[currentPost?.authorKey || 'trevelr'].name }}
+                    </div>
+                    <p class="author-bio">
+                      {{ authors[currentPost?.authorKey || 'trevelr'].bio }}
+                    </p>
                   </div>
                 </div>
                 <p class="post-meta" v-if="currentPost?.date">
-                  By {{ currentAuthor?.name || 'Trevelr' }} on
                   {{ new Date(currentPost.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) }}
                 </p>
                 <div class="post-badges" v-if="currentPost?.categories?.length || currentPost?.tags?.length">

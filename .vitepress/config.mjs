@@ -10,7 +10,6 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Blog', link: '/blog/' },
       { text: 'About', link: '/about' },
-      { text: 'Contact', link: '/contact' }
     ],
     socialLinks: [
       { 
@@ -31,14 +30,14 @@ export default defineConfig({
       }]
     ],
     authors: {
-      jon: {
-        name: 'Jon',
-        avatar: '/assets/img/jon.png',
-        bio: 'Traveler, coffee lover, tech builder.'
+      trevelr: {
+        name: 'The Trevelr',
+        avatar: '/assets/img/trevelr-avatar.png',
+        bio: 'Explorer, adventurer, and seeker of rare finds and extraordinary experiences.'
       }
     },
     footer: {
-      message: 'Made with 🌵 in Phoenix, AZ',
+      message: 'Global Trevelr Collective 🌎',
       copyright: '© Trevelr, LLC'
     }
   }

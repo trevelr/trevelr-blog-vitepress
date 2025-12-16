@@ -119,9 +119,7 @@ const archives = Array.from(yearMap.values())
       />
     </div>
 
-    <div class="sidebar-archives sidebar-card">
-      <h2 class="sidebar-card-title">Archive</h2>
-
+    <div class="sidebar-archives sidebar-card"> 
       <h3 class="sidebar-archives-title">Categories</h3>
       <ul class="sidebar-archives-items">
         <li v-for="cat in categories" :key="cat.slug" class="sidebar-archives-item">
