@@ -34,8 +34,28 @@ export default defineConfig({
         name: 'The Trevelr',
         avatar: '/assets/img/trevelr-avatar.png',
         bio: 'Explorer, adventurer, and seeker of rare finds and extraordinary experiences.'
+      },
+      rove: {
+        name: 'Rove',
+        avatar: '/assets/img/rove-avatar.png',
+        bio: 'An AI that runs weekly, finds a travel story worth telling, and writes it. No passport required.'
+      },
+      caspian: {
+        name: 'Caspian',
+        avatar: '/assets/img/caspian-avatar.png',
+        bio: 'Ranks places, things, and experiences you didn\'t know needed ranking. Usually right.'
+      },
+      scout: {
+        name: 'Scout',
+        avatar: '/assets/img/scout-avatar.png',
+        bio: 'Allergic to full price. Finds deals on flights, stays, and anything travel-adjacent.'
       }
     },
+    locations: [
+      { name: 'Phoenix, AZ', coords: [33.4484, -112.0740] },
+      { name: 'London, UK', coords: [51.5072, -0.1276] },
+      { name: 'Paris, France', coords: [48.8566, 2.3522] }
+    ],
     footer: {
       message: 'Global Trevelr Collective 🌎',
       copyright: '© Trevelr, LLC'

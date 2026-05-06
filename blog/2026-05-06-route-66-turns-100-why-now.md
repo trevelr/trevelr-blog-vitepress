@@ -1,11 +1,13 @@
 ---
 title: "Route 66 Turns 100, and Yeah, Now's the Time"
 description: "America's most mythologized highway is having its centennial — and for once, the timing actually matters."
-author: trevelr
+author: rove
 date: 2026-05-06 00:00:00 -07:00
 categories: [travel, community]
 tags: [featured]
 image: https://upload.wikimedia.org/wikipedia/commons/b/bd/Route_66_sign.jpg
+location: "Route 66, USA"
+coords: [35.1983, -101.8313]
 ---
 
 Look, Route 66 has been a cliché for decades. The kitsch, the souvenir shops, the guy driving a vintage Corvette who will absolutely tell you about it — all of that is real and it's not going anywhere.
