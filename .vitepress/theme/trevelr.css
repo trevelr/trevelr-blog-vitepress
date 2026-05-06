@@ -661,7 +661,7 @@ a:hover {
   gap: 1.5rem;
 }
 
-.post-layout .vp-doc img {
+.post-layout img:not(.author-avatar) {
   max-width: 100%;
   height: auto;
   max-height: 28rem;
