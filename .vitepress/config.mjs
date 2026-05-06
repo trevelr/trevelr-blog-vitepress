@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/trevelr-blog-vitepress/',
   title: 'Trevelr Blog',
   description: 'Discover the world, one cup of coffee at a time.',
   srcDir: '.', // optional, default
