@@ -105,39 +105,47 @@ onMounted(() => {
             :key="post.link"
             class="post-grid-item"
           >
-            <a :href="post.link">
-              <article>
-                <img v-if="post.image" :src="post.image" class="post-thumb" />
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.description }}</p>
-                <div class="post-card-meta">
-                  <template v-if="getAuthor(post)">
-                    <img
-                      class="author-avatar-tiny"
-                      :src="getAuthor(post).avatar"
-                      :alt="getAuthor(post).name"
-                    />
-                    <span class="post-meta-author">Posted by {{ getAuthor(post).name }}</span>
-                  </template>
+            <a :href="post.link" class="postcard-inner">
+              <!-- Front: featured photo -->
+              <div class="postcard-front">
+                <img v-if="post.image" :src="post.image" :alt="post.title" />
+                <div v-else class="postcard-front-blank">
+                  <span>{{ post.title }}</span>
                 </div>
-                <span class="post-meta-date">on {{ formatDate(post.date) }}</span>
-                <div class="post-badges" v-if="cleanList(post.categories).length || cleanList(post.tags).length">
-                  <span
-                    v-for="cat in cleanList(post.categories)"
-                    :key="`cat-${cat}`"
-                    class="badge badge-category"
-                  >
-                    {{ cat }}
-                  </span>
-                  <span
-                    v-for="tag in cleanList(post.tags)"
-                    :key="`tag-${tag}`"
-                    class="badge badge-tag"
-                  >
-                    #{{ tag }}
-                  </span>
+              </div>
+              <!-- Back: postcard content -->
+              <div class="postcard-back">
+                <div class="postcard-message">
+                  <h2 class="postcard-title">{{ post.title }}</h2>
+                  <p class="postcard-excerpt">{{ post.description }}</p>
+                  <div class="postcard-meta">
+                    <span v-if="getAuthor(post)">{{ getAuthor(post).name }}</span>
+                    <span v-if="getAuthor(post) && post.date"> · </span>
+                    <span>{{ formatDate(post.date) }}</span>
+                    <div class="post-badges" v-if="cleanList(post.categories).length || cleanList(post.tags).length">
+                      <span
+                        v-for="cat in cleanList(post.categories)"
+                        :key="`cat-${cat}`"
+                        class="badge badge-category"
+                      >{{ cat }}</span>
+                      <span
+                        v-for="tag in cleanList(post.tags)"
+                        :key="`tag-${tag}`"
+                        class="badge badge-tag"
+                      >#{{ tag }}</span>
+                    </div>
+                  </div>
+                  <span class="postcard-read-cta">Read post →</span>
                 </div>
-              </article>
+                <div class="postcard-address">
+                  <div class="postcard-stamp">✈</div>
+                  <div class="postcard-address-lines">
+                    <div class="postcard-address-line"></div>
+                    <div class="postcard-address-line"></div>
+                    <div class="postcard-address-line"></div>
+                  </div>
+                </div>
+              </div>
             </a>
           </div>
         </div>
