@@ -14,7 +14,7 @@ A travel blog built with [VitePress](https://vitepress.dev). Posts live in `/blo
 docker compose up dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open `http://localhost:5173`.
 
 The source directory is volume-mounted into the container so any file you edit locally is picked up immediately. `node_modules` lives in a named Docker volume so it isn't re-installed on every start — only when `package.json` changes.
 
@@ -24,7 +24,7 @@ The source directory is volume-mounted into the container so any file you edit l
 docker compose up prod --build
 ```
 
-Open [http://localhost:8080](http://localhost:8080).
+Open `http://localhost:8080`.
 
 ---
 
@@ -43,7 +43,7 @@ npm run preview    # preview the production build locally
 
 ## Writing a post
 
-See [PROFILE.md](./PROFILE.md) for the full agent instructions. Short version:
+See [ROVE.md](./ROVE.md) for Rove's full agent instructions. Short version:
 
 1. Create `blog/YYYY-MM-DD-your-slug.md`
 2. Add frontmatter:
@@ -86,7 +86,9 @@ coords: [lat, lng]
 ├── index.md               # Home page
 ├── Dockerfile             # Production build (nginx)
 ├── compose.yml            # Docker Compose (dev + prod services)
-└── PROFILE.md             # AI agent instructions for writing posts
+├── ROVE.md                # Rove agent profile (weekly travel posts)
+├── CASPIAN.md             # Caspian agent profile (monthly top-ten lists)
+└── SCOUT.md               # Scout agent profile (deal-gated posts)
 ```
 
 ---
