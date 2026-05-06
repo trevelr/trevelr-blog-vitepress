@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Trevelr Blog',
   description: 'Discover the world, one cup of coffee at a time.',
+  base: '/trevelr-blog-vitepress/',
   srcDir: '.', // optional, default
   themeConfig: {
     logo: '/assets/img/logo-accent.png',
