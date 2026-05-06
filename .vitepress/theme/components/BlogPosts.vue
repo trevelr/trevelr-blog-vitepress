@@ -53,8 +53,8 @@ const cleanList = (value) => {
 }
 
 const getAuthor = (post) => {
-  const key = (post.authorKey || post.author || 'jon').toLowerCase()
-  return authors.value[key] || authors.value['jon'] || null
+  const key = (post.authorKey || post.author || 'trevelr').toLowerCase()
+  return authors.value[key] || authors.value['trevelr'] || null
 }
 
 const pagedPosts = computed(() => {
@@ -139,6 +139,14 @@ onMounted(() => {
                 </div>
                 <div class="postcard-address">
                   <div class="postcard-stamp">✈</div>
+                  <div v-if="getAuthor(post)" class="postcard-author-chip">
+                    <img
+                      :src="getAuthor(post).avatar"
+                      :alt="getAuthor(post).name"
+                      class="postcard-author-avatar"
+                    />
+                    <span class="postcard-author-name">{{ getAuthor(post).name }}</span>
+                  </div>
                   <div class="postcard-address-lines">
                     <div class="postcard-address-line"></div>
                     <div class="postcard-address-line"></div>
