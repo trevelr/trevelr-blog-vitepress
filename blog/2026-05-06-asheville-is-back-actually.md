@@ -5,7 +5,7 @@ author: trevelr
 date: 2026-05-06 00:00:00 -07:00
 categories: [travel, community]
 tags: [featured]
-image: /assets/img/asheville-hero.jpg
+image: https://upload.wikimedia.org/wikipedia/commons/0/02/Lightning_Over_Asheville,_North_Carolina_01.JPG
 ---
 
 # The Write-Off
@@ -14,7 +14,7 @@ When Hurricane Helene came through western North Carolina in fall 2024, the trav
 
 So yeah. It's back. And if you haven't been, or you were waiting to see how things shook out — this is probably the right window.
 
-![Asheville skyline with the Blue Ridge Mountains in the background](/assets/img/asheville-hero.jpg)
+![Lightning storm over the Asheville, NC skyline at night](https://upload.wikimedia.org/wikipedia/commons/0/02/Lightning_Over_Asheville,_North_Carolina_01.JPG)
 
 # What Asheville Even Is
 
@@ -24,29 +24,27 @@ The vibe is: someone took a cool neighborhood from a bigger city and gave it its
 
 # The River Arts District
 
-![Colorful murals and converted warehouses lining the French Broad River in Asheville's River Arts District](/assets/img/asheville-river-arts-district.jpg)
-
 Yo. The River Arts District. Former industrial warehouses stretched along the French Broad River, converted into something like 200 working artist studios. You can just... walk in. Watch people make things. Buy stuff directly from the person who made it, which is a concept that apparently still exists.
+
+![Colorful street art, trucks, and converted warehouses in Asheville's River Arts District](https://upload.wikimedia.org/wikipedia/commons/e/ed/Asheville_River_Arts_District_-_Trucks_and_graffiti.jpg)
 
 Some of it got hit by Helene. Some of it is mid-rebuild. That's not a reason to skip it — it's actually kind of fascinating to see a creative district in the process of figuring itself out again. The murals are still everywhere. **GRIND**, Asheville's first Black-owned coffee shop, is in here. **Ultra Coffee** too, right next to the Odyssey Center for Ceramic Arts if you want to watch someone throw a pot while you drink an espresso. Normal Tuesday stuff.
 
-# South Slope: Just Walk In
+![The Cotton Mill Studios in the River Arts District — a former industrial building now packed with working artist studios](https://upload.wikimedia.org/wikipedia/commons/d/df/Cotton_Mill_Studios_-_River_Arts_District,_Asheville,_North_Carolina.jpg)
 
-![Neon brewery signs and outdoor patios along South Slope's main drag at dusk](/assets/img/asheville-south-slope.jpg)
+# South Slope: Just Walk In
 
 The South Slope is the brewery district and yes there are a lot of breweries, no you don't need a plan. Pick one with an outdoor patio, order a flight, watch the mountains exist in the background. **Burial Beer Co.** has a good room. **Wicked Weed** is the big name if you want the full tourist experience. Honestly they're all fine. The point is the density — you can walk between five of them in twenty minutes and feel like you've discovered something, which is the correct feeling to have.
 
 # West Asheville / Haywood Road
 
-![Vintage shop fronts and colorful murals along Haywood Road in West Asheville](/assets/img/asheville-west-asheville.jpg)
-
 This is where people actually live. Haywood Road is the main drag — record stores, vintage shops, murals, modern restaurants tucked into old buildings. Less curated than downtown, more interesting because of it.
 
 **Sunny Point Café** does breakfast on a patio and the wait is worth it. Order whatever has eggs. Get there before 10am or accept the line as a feature, not a bug.
 
-# Chai Pani, Full Stop
+![The historic Woolworth Building on Haywood Street — old Asheville bones with new energy inside](https://upload.wikimedia.org/wikipedia/commons/8/82/Woolworth_building_25_Haywood_Street,_Asheville_NC.JPG)
 
-![Colorful Indian street food dishes on a wooden table at Chai Pani restaurant](/assets/img/asheville-chai-pani.jpg)
+# Chai Pani, Full Stop
 
 This one gets its own section because it deserves it. Indian street food, done with actual care, in a room that feels like it's always been there. The bhel puri. The dahi puri. The kale pakoras which sound like something a menu put there to seem healthy but are genuinely one of the best things you'll eat.
 
@@ -54,13 +52,15 @@ It has a James Beard Award. It survived the storm. Go here. Don't overthink the 
 
 # The Blue Ridge Parkway is Free and It Will Rearrange Your Brain
 
-![Golden hour light across layered Blue Ridge Mountain ridges from a Parkway overlook](/assets/img/asheville-blue-ridge-parkway.jpg)
-
 The Blue Ridge Parkway is a 469-mile scenic road that runs along the ridge of the Appalachians. It costs nothing to drive. There are pullouts every few miles where you can just stop and look at mountains doing mountain things — ridge after ridge fading blue into the horizon, no guardrails between you and the view.
 
 **Craggy Gardens** is about 25 miles northeast of downtown on the Parkway. In late spring it's covered in wild rhododendrons. Just casually one of the more beautiful things you can see in the eastern United States. Get there for sunrise if you can make yourself do that.
 
+![Sunrise at Craggy Gardens on the Blue Ridge Parkway — yeah, it actually looks like this](https://upload.wikimedia.org/wikipedia/commons/c/ca/Craggy_Gardens_Sunrise_-_panoramio.jpg)
+
 **Black Balsam Knob** is further out near Milepost 420, above the treeline, wide open views in every direction. Feels like the top of the world even though it's only 6,200 feet. Bring a layer regardless of the season.
+
+![The Blue Ridge Parkway winding through the mountains — free to drive, impossible to take a bad photo from](https://upload.wikimedia.org/wikipedia/commons/5/52/NC226A-Blue_Ridge_Parkway.JPG)
 
 # The Real Reason to Go This Summer
 
