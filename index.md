@@ -52,8 +52,6 @@ const featuredPosts = Object.entries(modules)
   .filter(Boolean)
   .sort((a, b) => (a.date < b.date ? 1 : -1))
   
-const hasFeatured = featuredPosts.length > 0
-
 onMounted(() => {
   const cards = document.querySelectorAll('.post-grid-item')
   cards.forEach(card => {
@@ -80,15 +78,10 @@ onMounted(() => {
   <img src="/assets/img/trevelr.png" class="home-image" style="width: 12rem; bottom: -12rem; left: 50vw;" />
 </div>
 
-<div id="letsgo" class="page">
-  <div class="page-main">
-  </div>
-</div>
-
-<div class="featured">
+<div id="letsgo" class="featured">
   <BlogPosts
     :posts="featuredPosts"
-    title="Featured Posts"
+    title="Featured"
     title-tag="h2"
     :show-pagination="false"
     :page-size="12"

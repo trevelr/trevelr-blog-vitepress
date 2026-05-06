@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 type PageModule = {
   __pageData?: {
     relativePath?: string
@@ -18,6 +20,27 @@ const slugify = (value: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 
+// Latest posts
+const latestPosts = Object.values(modules)
+  .map(mod => {
+    const pageData = mod.__pageData || {}
+    const fm = pageData.frontmatter || {}
+    if (pageData.relativePath === 'blog/index.md') return null
+    const slug = pageData.relativePath
+      ? pageData.relativePath.replace(/^blog\//, '').replace(/\.md$/, '')
+      : ''
+    if (!slug) return null
+    return {
+      title: (fm.title || pageData.title || slug) as string,
+      date: (fm.date || '') as string,
+      link: `/blog/${slug}`
+    }
+  })
+  .filter(Boolean)
+  .sort((a, b) => (a!.date < b!.date ? 1 : -1))
+  .slice(0, 4) as { title: string; date: string; link: string }[]
+
+// Archive data
 const categoryMap = new Map<string, { name: string; slug: string; count: number }>()
 const tagMap = new Map<string, { name: string; slug: string; count: number }>()
 const yearMap = new Map<
@@ -29,7 +52,6 @@ Object.values(modules).forEach((mod) => {
   const pageData = mod.__pageData || {}
   const fm = pageData.frontmatter || {}
 
-  // categories: support single "category" or array "categories"
   const catList = Array.isArray(fm.categories)
     ? fm.categories
     : fm.category
@@ -39,27 +61,19 @@ Object.values(modules).forEach((mod) => {
     const name = String(cat)
     const slug = slugify(name)
     const existing = categoryMap.get(slug)
-    if (existing) {
-      existing.count += 1
-    } else {
-      categoryMap.set(slug, { name, slug, count: 1 })
-    }
+    if (existing) existing.count += 1
+    else categoryMap.set(slug, { name, slug, count: 1 })
   })
 
-  // tags: support string or array
   const tagList = Array.isArray(fm.tags) ? fm.tags : fm.tags ? [fm.tags] : []
   tagList.forEach((tag: string) => {
     const name = String(tag)
     const slug = slugify(name)
     const existing = tagMap.get(slug)
-    if (existing) {
-      existing.count += 1
-    } else {
-      tagMap.set(slug, { name, slug, count: 1 })
-    }
+    if (existing) existing.count += 1
+    else tagMap.set(slug, { name, slug, count: 1 })
   })
 
-  // archive: derive year/month from date
   const dateStr: string | undefined = fm.date || pageData.lastUpdated
   if (!dateStr) return
   const date = new Date(dateStr)
@@ -92,10 +106,16 @@ const archives = Array.from(yearMap.values())
     months: Array.from(year.months.values()).sort((a, b) => a.month.localeCompare(b.month))
   }))
   .sort((a, b) => Number(b.year) - Number(a.year))
+
+// Dropdown state
+const showCategories = ref(true)
+const showTags = ref(true)
+const showDates = ref(false)
 </script>
 
 <template>
   <aside class="sidebar">
+
     <div class="sidebar-newsletter sidebar-card">
       <h3 class="sidebar-card-title">Subscribe</h3>
       <form action="#" method="post" class="sidebar-form">
@@ -119,44 +139,77 @@ const archives = Array.from(yearMap.values())
       />
     </div>
 
-    <div class="sidebar-archives sidebar-card"> 
-      <h3 class="sidebar-archives-title">Categories</h3>
-      <ul class="sidebar-archives-items">
-        <li v-for="cat in categories" :key="cat.slug" class="sidebar-archives-item">
-          <a :href="`/category/${cat.slug}/`">
-            {{ cat.name }} ({{ cat.count }})
-          </a>
+    <div class="sidebar-card" v-if="latestPosts.length">
+      <h3 class="sidebar-card-title">Latest</h3>
+      <ul class="sidebar-link-list">
+        <li v-for="post in latestPosts" :key="post.link" class="sidebar-link-item">
+          <a :href="post.link">{{ post.title }}</a>
         </li>
       </ul>
+    </div>
 
-      <h3 class="sidebar-archives-title">Tags</h3>
-      <ul class="sidebar-archives-items">
-        <li v-for="tag in tags" :key="tag.slug" class="sidebar-archives-item">
-          <a :href="`/tag/${tag.slug}/`">
-            {{ tag.name }} ({{ tag.count }})
-          </a>
-        </li>
-      </ul>
+    <div class="sidebar-archives sidebar-card">
+      <h3 class="sidebar-card-title">Archive</h3>
 
-      <h3 class="sidebar-archives-title">Date</h3>
-      <ul class="sidebar-archives-items">
-        <li v-for="year in archives" :key="year.year" class="sidebar-archives-item">
-          <a :href="`/archive/${year.year}/`">
-            {{ year.year }} ({{ year.total }})
-          </a>
-          <ul>
-            <li
-              v-for="month in year.months"
-              :key="month.month"
-              class="sidebar-archives-subitem"
-            >
-              <a :href="`/archive/${year.year}/${month.month}/`">
-                {{ month.label }} ({{ month.count }})
+      <div class="sidebar-section">
+        <button class="sidebar-section-toggle" @click="showCategories = !showCategories">
+          Categories
+          <span class="toggle-icon" :class="{ open: showCategories }">▾</span>
+        </button>
+        <div v-show="showCategories" class="sidebar-section-content sidebar-tag-cloud">
+          <a
+            v-for="cat in categories"
+            :key="cat.slug"
+            :href="`/category/${cat.slug}/`"
+            class="badge badge-category"
+          >{{ cat.name }}</a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <button class="sidebar-section-toggle" @click="showTags = !showTags">
+          Tags
+          <span class="toggle-icon" :class="{ open: showTags }">▾</span>
+        </button>
+        <div v-show="showTags" class="sidebar-section-content sidebar-tag-cloud">
+          <a
+            v-for="tag in tags"
+            :key="tag.slug"
+            :href="`/tag/${tag.slug}/`"
+            class="badge badge-tag"
+          >{{ tag.name }}</a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <button class="sidebar-section-toggle" @click="showDates = !showDates">
+          By Date
+          <span class="toggle-icon" :class="{ open: showDates }">▾</span>
+        </button>
+        <div v-show="showDates" class="sidebar-section-content">
+          <ul class="sidebar-archives-items">
+            <li v-for="year in archives" :key="year.year" class="sidebar-archives-item">
+              <a :href="`/archive/${year.year}/`">
+                {{ year.year }}
+                <span class="archive-count">{{ year.total }}</span>
               </a>
+              <ul>
+                <li
+                  v-for="month in year.months"
+                  :key="month.month"
+                  class="sidebar-archives-subitem"
+                >
+                  <a :href="`/archive/${year.year}/${month.month}/`">
+                    {{ month.label }}
+                    <span class="archive-count">{{ month.count }}</span>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
+
     </div>
   </aside>
 </template>

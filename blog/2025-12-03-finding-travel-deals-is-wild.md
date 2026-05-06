@@ -5,7 +5,8 @@ author: trevelr
 date: 2025-12-03 00:00:00 -07:00
 categories: [travel, community]
 tags: [featured]
-image: /assets/img/finding-travel-deals-is-wild.png 
+image: /assets/img/finding-travel-deals-is-wild.png
+location: "Online"
 ---
 
 # Explanation

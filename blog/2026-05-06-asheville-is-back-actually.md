@@ -1,11 +1,13 @@
 ---
 title: "Asheville is Back, Actually"
 description: "Everyone wrote it off after Helene. Turns out people are going anyway — and honestly, good call."
-author: trevelr
+author: rove
 date: 2026-05-06 00:00:00 -07:00
 categories: [travel, community]
 tags: [featured]
 image: https://upload.wikimedia.org/wikipedia/commons/0/02/Lightning_Over_Asheville,_North_Carolina_01.JPG
+location: "Asheville, NC"
+coords: [35.5951, -82.5515]
 ---
 
 # The Write-Off

@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch, nextTick } from 'vue'
 import { Content, useData, useRoute } from 'vitepress'
 
 const { theme } = useData()
@@ -7,13 +7,7 @@ const route = useRoute()
 
 const modules = import.meta.glob('/blog/*.md', { eager: true })
 
-const authors = {
-  trevelr: {
-    name: 'The Trevelr',
-    avatar: '/assets/img/trevelr-avatar.png',
-    bio: 'Explorer, adventurer, and seeker of rare finds and extraordinary experiences.'
-  }
-}
+const authors = computed(() => theme.value?.authors || {})
 
 const posts = computed(() =>
   Object.entries(modules)
@@ -37,6 +31,8 @@ const posts = computed(() =>
           : fm.category
             ? [fm.category]
             : [],
+        location: fm.location || '',
+        coords: fm.coords || null,
         link: `/blog/${slug}`
       }
     })
@@ -64,6 +60,62 @@ const prevNext = computed(() => {
   return {
     prev: idx > 0 ? posts.value[idx - 1] : null,
     next: idx < posts.value.length - 1 ? posts.value[idx + 1] : null
+  }
+})
+
+let leafletMap = null
+let leafletLoaded = false
+
+async function initPostMap(post) {
+  const el = document.getElementById('post-map')
+  if (!el || !post?.coords) return
+
+  if (leafletMap) {
+    leafletMap.remove()
+    leafletMap = null
+  }
+
+  if (!leafletLoaded) {
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+    link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='
+    link.crossOrigin = ''
+    document.head.appendChild(link)
+    leafletLoaded = true
+  }
+
+  const L = await import('https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js')
+
+  leafletMap = L.map('post-map', {
+    center: post.coords,
+    zoom: 10,
+    scrollWheelZoom: false,
+    zoomControl: true
+  })
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(leafletMap)
+
+  L.marker(post.coords)
+    .addTo(leafletMap)
+    .bindPopup(`<b>${post.location || post.title}</b>`)
+    .openPopup()
+}
+
+onMounted(() => {
+  if (currentPost.value?.coords) {
+    nextTick(() => initPostMap(currentPost.value))
+  }
+})
+
+watch(currentPost, (post) => {
+  if (post?.coords) {
+    nextTick(() => initPostMap(post))
+  } else if (leafletMap) {
+    leafletMap.remove()
+    leafletMap = null
   }
 })
 </script>
@@ -128,6 +180,9 @@ const prevNext = computed(() => {
                     </p>
                   </div>
                 </div>
+                <p class="post-location" v-if="currentPost?.location">
+                  📍 {{ currentPost.location }}
+                </p>
                 <p class="post-meta" v-if="currentPost?.date">
                   {{ new Date(currentPost.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) }}
                 </p>
@@ -148,6 +203,7 @@ const prevNext = computed(() => {
                   </span>
                 </div>
               </div>
+              <div v-if="currentPost?.coords" id="post-map" class="travel-map post-map"></div>
               <Content />
               <div class="post-pagination">
                 <a v-if="prevNext.prev" :href="prevNext.prev.link" class="btn ghost">← {{ prevNext.prev.title }}</a>
