@@ -661,6 +661,16 @@ a:hover {
   gap: 1.5rem;
 }
 
+.post-layout .vp-doc img {
+  max-width: 100%;
+  height: auto;
+  max-height: 28rem;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
 .post-hero {
   width: 100%;
   display: flex;
